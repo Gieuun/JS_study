@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let x = 200; //비행기의 시작 x좌표 값을 담당 
+        let y = 150; //비행기의 시작 y좌표 값을 담당
+        
+        //비행기를 앞으로 나아게 한다(x축 left값을 증가시키자)
+        function moveRight(){
+            x = x + 5;
+            let plane = document.getElementById("plane");
+            plane.style.left= x+"px";
+            console.log("x값 :", x);
+        }
+        //비행기를 뒤로 가게한다(x축 letft 값 감소)
+        function moveLeft(){
+            x = x - 5;
+
+            let plane = document.getElementById("plane");
+            plane.style.left= x+"px";
+            console.log("x값 :", x);
+        }
+        //비행기를 위로 올라가게 한다(y축 top 감소)
+        function moveTop(){
+            y = y - 5;
+
+            let plane=document.getElementById("plane");
+            plane.style.top= y +"px";
+            console.log("y값 :", y);
+
+        }
+        //비행기를 밑으로 가게한다(y축 top 증가)
+        function moveDown(){
+            y = y + 5;
+
+            let plane=document.getElementById("plane");
+            plane.style.top= y +"px";
+            console.log("y값 :", y);
+        }
+
+        
+    </script>
+
+    <style>
+        /*문서에 게임 배경을 배경이미지로 적용해보기*/
+        #wrapper{
+            background-image: url(../day1/images/plane/game_bg.jpg);
+            width: 1280px;
+            height: 640px;
+            margin: auto;
+            position: relative; /*자식의 포지션을 명시하면 부모도 명시해야함*/
+        }
+        #plane{
+            width: 100px;
+            position: absolute; /*부모를 기준으로 한 위치*/
+            left: 200px; /*x축*/
+            top: 150px;  /*y축*/
+        }
+    </style>
+</head>
+<body>
+    <!-- 게임의 스테이지(무대) 역할을 할 div 사용 -->
+    <div id="wrapper">
+            <table>
+                <!-- 3 * 2 의 버튼 태크를 만듬  -->
+                <tr>
+                    <td></td>
+                    <td><button onclick="moveTop()">top</button></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onClick = "moveLeft()">left</button>
+                    </td>
+                    <td>
+                        <button onClick = "moveDown()">down</button>
+                    </td>
+                    <td>
+                        <button onclick= "moveRight()">right</button>
+                    </td>
+                </tr>
+            </table>
+           <img id = "plane" src="images/plane/plane.png">
+    </div>
+</body>
+</html>

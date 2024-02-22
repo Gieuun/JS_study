@@ -1,0 +1,18 @@
+<script>
+    //제어문 작성시, {}를 사용하지 않아도 에러가 발생하지 않는다
+    //단, 영역지정이 없음으로 제어문의 범위를 알 수 없다.
+    // 따라서 default는 바로 아래 한 line만 적용한다
+    
+    /*
+    if(false)
+    document.write("A");
+    document.write("B");
+    */
+
+    if(true){
+        let x = 3; // 전역변수(프로그램 즉 웹브라우저를 닫을때까지 메모리에 할당)
+    }
+    
+    document.write(x);
+    </script>
+    

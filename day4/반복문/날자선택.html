@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        html은 프로그래밍 언어가 아니므로, 직접 for문 등을 적용불가
+        따라서, option 태크를 동적으로 생성하여
+        즉. document.createElement("태그")를 이용하여 option을 추가하자
+        */
+       
+        //html 문서가 모두 로드되면..
+        function init(){
+            let sel_yy=document.getElementById("sel_yy");
+            let sel_mm=document.getElementById("sel_mm");
+           
+            //1945~2024년 까지
+            for(let i=1945; i<=2024; i++){
+                //option 태그를 동적으로 생성
+                let op = document.createElement("option") //<option></option>
+                op.text=i;//<option>text.i</option>
+
+                //생성된 op를 sel_yy에 자식으로 추가
+                sel_yy.add(op);
+            }
+
+            //1~12월 까지..
+            for(let i=1; i<=12; i++){
+                let op = document.createElement("option")
+                op.text=i;
+                sel_mm.add(op);
+            }
+
+            //1~31일 일까지...
+
+       }
+    </script>
+</head>
+<body onLoad="init()">
+    <!-- 1945~2018년 -->
+    <select id="sel_yy"></select>년 
+    <select id="sel_mm"></select>월
+    <select id="sel_dd"></select>일
+</body>
+</html>

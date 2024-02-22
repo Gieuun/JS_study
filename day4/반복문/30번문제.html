@@ -1,0 +1,11 @@
+<script>
+    let n = parseInt(prompt("개행 시킬 번호입력"));
+
+    for(let i = 1; i<=100; i++){
+        if(i%n==0){
+             document.write("★<br>"); //n번째에서 개행
+        }else{
+            document.write("★");      //아니면 그냥 출력
+        }
+    }
+</script>

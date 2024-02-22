@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let pic;
+        let x=0;  //누적시키거나, 감소시켜야 하므로 전역변수
+        let goal=1000; // 비행기가 도착할 목적지
+        let step = 10; //비행기가 수동 버튼 한번에 전진할 거리
+        
+        function init(){
+            //문서내의 pic의 위치를 지정해본다 (body기준 절대위치)
+            pic = document.getElementById("pic");
+            pic.style.position="absolute";
+            pic.style.left=0+"px";
+            pic.style.top=150+"px";
+        }
+
+        // x축으로의 이동함수 정의
+        function move(){ 
+            x+=step;
+            step=(x>=goal||x<=0)? -step:step;   //비행기의  위치가 x보드 크거나 같으면 원점으로 향하게 하고
+                                                   //비행기가 원점에 있으면 goal로 향하게 한다
+            pic.style.left=x+"px";
+        } 
+
+        function auto(){ 
+            setInterval("move()", 10) //move()를 1000분에 1초 간격의 실행
+        }
+        
+        
+        addEventListener("load", function(){
+            init();
+  
+        });
+    </script>
+
+    <style>
+        #pic{
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+    <button onClick="move()">수동</button>
+    <button onclick="auto()">자동</button>
+    <img src="../images/plane/plane.png" id="pic">
+    </div>
+    
+</body>
+</html>

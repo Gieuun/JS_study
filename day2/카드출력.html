@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드출력</title>
+
+    <style>
+        #wrapper{
+            width: 900px;
+            height: 700px;
+        }
+        #aside{
+            width: 100px;
+            height:700px;
+            background-color: aqua;
+            float: left;
+        }
+        #content{
+            width:800px;
+            height:700px;
+            background-color: green;
+            float: left;
+        }
+    </style>
+
+    <script>
+        //동적으로(dynamic) 즉 런타임시(실행시) 태그를 생성하여
+        //content에 부착해보자
+    let n = 0; // 카드번호를 누적시킬 전역변수
+        
+    function creatCard(){       
+            let img = document.createElement("img"); //img 작성과 동일
+             n++; // n= n+1;과 동일
+            //조커가 오거나 , h숫자 둘중 하나가 와야한다.
+            //img.src="../images/card/h" + n + ".png";
+            let fileName=(n%4==0)? "joker.png": "h"+n+".png";
+
+            img.src="../images/card/" + fileName;
+            img.style.width=100+"px"; //너비조절
+            img.style.height=120+"px";//높이 조절
+            
+            
+            //content div에 자식 요소로 부착하자
+            let content = document.getElementById("content");
+            content.appendChild(img); //<div>cotent</div> 과 동일
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrapper"> 
+        <div id="aside">
+            <button onClick="creatCard()">카드 출력</button>
+        </div>
+        <div id="content">
+        </div>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let flag = true; //논리값을 선언
+
+        //wrapper의 배경색을 red, yellow을 번갈아가며 교체
+        function setBg(){
+            let wrapper = document.getElementById("wrapper");
+            //삼항 연사자가 값을 처리하기 전에, 기존 값을 뒤집기
+            flag = !flag;
+            let bg=(flag)? "red":"green";
+            
+            wrapper.style.backgroundColor=bg; 
+            // carmel기법 단어와 단어가 만나면 첫단어는 대문자로 작성한다.
+
+        }
+
+    </script>
+
+    <style>
+        #wrapper{
+            width: 500px;
+            height: 500px;
+            background-color: #ccc; /*3개만 적으면 6개의 동일한 값으로 인정*/
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body> 
+    <button onClick="setBg()">배경뒤집기</button>
+ 
+    <div id="wrapper">
+       
+    </div>    
+</body>
+</html>

@@ -1,0 +1,19 @@
+<script>
+    let x=5;
+    let y="korea";
+    let z=7;
+
+    //메모리에 올라온 데이터를 대상으로 더하기 연산을 수행해보자
+    let k = x + z; // x + z 한 결과를 k 에 대입
+    console.log(k);
+
+    let l = x + y; //x는 숫자 y는 문자 이므로 원칙상 서로 다른 데이터는 연산 수행이 
+                   //불가능 하지만, 서로 다른 데이터 중 그 데이터의 종류가 문자라면
+                   // 연산 대상이 되는 모든 데이터를 문자로 처리
+    console.log(l);
+
+    let r = "apple" + 7;
+    console.log(r); // 즉, 숫자인 7을 문자로 인식하여 연결자 역할을함 
+                    // 결과: apple7 
+
+</script>

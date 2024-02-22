@@ -1,0 +1,14 @@
+<script>
+    //원하는 수름 입력받아(n) 
+    //가로(n) 세로(n)
+    // 같은수를 갖는 별을 출력
+    let n = prompt("원하는 수 입력");
+    n=parseInt(n);
+
+    for(i=1; i<=n*n; i++){  //
+        document.write("★");
+        if(i%n==0){
+            document.write("<br>");
+        }
+    }
+</script>
