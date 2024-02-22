@@ -39,9 +39,9 @@
     </style>
     <script src="../js/lib.js"></script>
     <script>
-        //욕데이터베이스
-        let bad=["시발","개새끼","병신"];
-        let good=["낭랑18새","강아지","흥"];
+        
+        let bad=["개새끼","십팔놈", "육시럴"];//욕 데이터베이스 
+        let good=["강아지","낭랑18세","흥"];//순화 데이터베이스
 
         addEventListener("load", function(){
             
@@ -52,13 +52,15 @@
             //좌측 텍스트박스에 입력이 일어나면..
             keyInput[0].addEventListener("keyup", function(e){
                 if(e.keyCode==13){
-                    //메시지 처리하기 전, 필터링 처리
-                    //let str = this.value;   //"나는 사과와 딸기와 포도를 좋아한다."
-                    
-                   // for(let i=0; i<bad.length; i++){ //욕 데이터 베이스만큼
-                   //    str = str.replace(bad[i], good[i]);
-                   // }
-                    let str = filterLang(this.value, bad, good);
+
+                    //메시지 처리 하기 전에 , 필터링 적용해보자 
+                    //let str = this.value; //  "나는 사과와 딸기와 포도를 좋아한다"
+
+                    //for(let i=0;i<bad.length;i++){ //욕 데이터베이스 만큼...
+                        //"야이 강아지야 너 십XX 아 , 에잇 육XX ""
+                       // str = str.replace(bad[i] , good[i]);                                                     
+                    //}
+                    let str=filterLang(this.value, bad, good);
 
                     //1)채팅 메시지를 상대방에 출력 
                     log[1].append("A님말 : "+str+"\n"); //상대방인 우측 textarea에 문자열 누적
@@ -74,14 +76,14 @@
             //우측 텍스트박스에 입력이 일어나면..
             keyInput[1].addEventListener("keyup", function(e){
                 if(e.keyCode==13){
-                    //메시지 처리하기 전, 필터링 처리
-                    let str = filterLang(this.value, bad, good);
+
+                    let str=filterLang(this.value, bad, good);
 
                     //1)채팅 메시지를 상대방에 출력 
-                    log[0].append("B님말 : "+this.value+"\n"); //상대방인 좌측 textarea에 문자열 누적
+                    log[0].append("B님말 : "+str+"\n"); //상대방인 좌측 textarea에 문자열 누적
 
                     //2) 나의 textare에 기록을 남기기   
-                    log[1].append("나의말 : "+this.value+"\n");  
+                    log[1].append("나의말 : "+str+"\n");  
 
                     //입력한 텍스트는 다시 초기화 
                     this.value="";
