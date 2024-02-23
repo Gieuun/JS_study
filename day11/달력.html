@@ -55,9 +55,9 @@
 
 
         function createDayCell(){
-            //container, x,y,width,height,content
+            //container, x,y,width,height,content,icon
             for(let i = 0; i<dayTitleArray.length; i++){
-                let cell = new Cell(dayTitle,(i*cellSize),0,cellSize,50,dayTitleArray[i]);
+                let cell = new Cell(dayTitle,(i*cellSize),0,cellSize,50,dayTitleArray[i],"");
                 cell.div.style.lineHeight=50+"px";            
                 cell.div.style.textAlign="center";            
             }
@@ -68,8 +68,8 @@
 
                 let arr=[];
                 for(let j=0; j<dayTitleArray.length; j++){//호수
-                    //container, x,y,width,height,content
-                    let cell = new Cell(content,(j*cellSize),(i*cellSize),cellSize,cellSize,"?");
+                    //container, x,y,width,height,content,icon
+                    let cell = new Cell(content,(j*cellSize),(i*cellSize),cellSize,cellSize,"?","");
                     arr.push(cell)// 일차원 배열에 담기
                 }
                 cellArray.push(arr); //층수만큼 일차원 배열인 arr을 넣기
