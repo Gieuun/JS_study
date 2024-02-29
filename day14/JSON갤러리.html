@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #wrapper{
+        #wrapper {
             width: 1000px;
             height: 800px;
             margin: auto;
             background-color: blue;
         }
-        #header{
+
+        #header {
             width: 100%;
             height: 100px;
             background-color: aqua;
@@ -20,53 +22,137 @@
             font-size: 50px;
             font-weight: bold;
         }
-        #section{
+
+        #section {
             width: 100%;
             height: 600px;
             background-color: darkmagenta;
         }
-        #aside{
+
+        #aside {
             width: 600px;
             height: 100%;
             background-color: blueviolet;
-            float: left; 
+            float: left;
 
         }
-        #content{
+
+        #pic{
+            width: 100%;
+            height: 100%;
+        }
+
+        #content {
             width: 400px;
             height: 100%;
             font-size: 16px;
             background-color: azure;
             float: left;
         }
-        #footer{
+
+        #footer {
             width: 100%;
             height: 100px;
-            background-color: yellowgreen;
+            background-color: wheat;
             line-height: 100px;
+            position: relative;
+            overflow: hidden;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./data.js"></script>
+    <script src="./Photo.js"></script>
     <script>
-       
-    //jquery에서의 onload 이벤트 
-    //addEventListener("load", function(){}), $(function(){});와 동일
-    //jQuery가 배우기 쉬웅ㄴ 이유는, 문법 구문(syntax)이 아래와 같이 단순한 구조
-    //구조 $(누구를).어떻게() 
-    $(document).ready(function(){
-        alert("문서 로드 했어?");
-       });
+        let wrapper, header, aside, content, footer, box;
+        const a=0.1;  //비율계수
+        let targetX=0;//목표점
+        let thumbArray=[]; //모든 썸네일 photo객체를 모아놓을 배열
+        
+        //this란 호출 시점에 따라 그 의미가 변함
+        //대명사이기 때문에 상대적으로 의미가 변함(절대적이지 않음)
+        function test(){
+            console.log(this); //여기서 this의 scope는 전역영역인 window영역
+        }
+
+        //footer에 붙여질 썸네일 생성하기 
+        function createThumb() {
+            //박스의 스타일 설정(이미지의 수에 의존, 프로그래밍적으로 처리)
+            //상수 적용(기준) 값이 고정됨
+            const imgCount = movie.marvel.length;
+            const width = 100;
+
+            $(box).css({
+                "position": "absolute",
+                "left": "0px",
+                "top": "0px",
+                "width": `${imgCount * width}px`,
+                "height": "100px"
+            });
+
+            //container, src, x, y, width, height 
+            //영화수 만큼 반복문으로 썸네일 만들기 
+            for (let i = 0; i < movie.marvel.length; i++) {
+                let url = movie.marvel[i].url;
+                let photo = new Photo(box, url, i * 100, 0, 100, 100);
+
+                thumbArray.push(photo); //배열에 담아 놓으면 다양한 규칙이 생김
+            }
+        }
+        //감속도 공식으로 움직이는 페이지효과
+        //나의 위치 = 현위치 + 비율계수 *()
+        function pageMove() {
+            let posX = parseFloat($(box).css("left"))+a*(targetX - parseFloat($(box).css("left")));
+            $(box).css("left", posX+"px");
+        }
+
+        //페이지를 보여주는 함수 (1p 일때는 box의 방향을 음수, 2p 일때는 양수방향)
+        function showPage(x) { //x = -1000, 0
+            targetX=x;
+        }
+
+        function gameLoop(){
+            pageMove();
+        }
+
+        //jquery에서의 onload 이벤트 
+        //addEventListener("load", function(){}) 동일
+        //jQuery가 배우기 쉬웅ㄴ 이유는, 문법 구문(syntax)이 아래와 같이 단순한 구조
+        //구조 $(누구를).어떻게() 
+        $(function () {
+            header = document.getElementById("header");
+            aside = document.getElementById("aside");
+            content = document.getElementById("content");
+            footer = document.getElementById("footer");
+            box = document.getElementById("box");
+
+            createThumb();
+
+            //키보드 이벤트 연결
+            //이벤트 이름을 메서드로 직접 사용가능
+            //$(document).keydown(functuon(e))
+            $(document).on("keydown", function (e) {
+                switch (e.keyCode) {
+                    case 39: showPage(-1000); break; //이전 페이지
+                    case 37: showPage(0); break; //다음 페이지
+                }
+            });
+            
+            setInterval("gameLoop()", 10);
+        });
     </script>
 </head>
+
 <body>
     <div id="wrapper">
         <div id="header">아이언맨</div>
         <div id="section">
-            <div id="aside"></div>
+            <div id="aside"><img id="pic"></div>
             <div id="content"></div>
         </div>
-        <div id="footer"></div>
+        <div id="footer">
+            <div id="box"></div>
+        </div>
     </div>
 </body>
+
 </html>
